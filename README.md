@@ -1,0 +1,2 @@
+# statnotes
+Statistical Learning Notes
