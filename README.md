@@ -24,3 +24,12 @@ Statistical Learning Notes
 
 
 Reference: https://towardsdatascience.com/hypothesis-testing-with-python-step-by-step-hands-on-tutorial-with-practical-examples-e805975ea96e
+
+## When to use each measure of Central Tendency
+1. *Mean* is the most frequently used measure of central tendency and generally considered the **best** meature of it. However, there are some situations where either median of mode are preferred.
+2. *Median* is the preferred measure of central tendency when:
+    - There are a few **extreme** scores in the distribution of the data (Remember that a single outlier can have a great effect on the mean).
+    - There are some **missing** or **undetermined** values in your data.
+    - There is an open ended distribution (e.g.if you have a data field which measures number of children and your options are 0,1,2,3,4,5 or "6 or more", then the "6 or more" is open ended and makes calculating the mean impossible, since we do not know exact values for this field.
+    - You have data measured on an **ordinal** scale.
+3. *Mode* is preferred measure when data are measured in a **nominal** (and even sometimes ordinal) scale.
