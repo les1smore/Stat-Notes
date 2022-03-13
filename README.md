@@ -22,6 +22,17 @@ Statistical Learning Notes
 
 7. **Friedman Chi-Square:** nonparametric version of ANOVA for more than 2 groups paired data
 
+- T-Test: 
+    - Compare the Means between two groups
+    - Small sample size
+- Z-Test:
+    - Compare the Means between two groups
+    - Large sampl size
+- ANOVA:
+    - Compare the means between two+ groups
+- Chi-Square:
+    - Compares proportions between two groups
+
 
 Reference: https://towardsdatascience.com/hypothesis-testing-with-python-step-by-step-hands-on-tutorial-with-practical-examples-e805975ea96e
 
