@@ -48,3 +48,30 @@ Reference: https://towardsdatascience.com/hypothesis-testing-with-python-step-by
 3. *Mode* is preferred measure when data are measured in a **nominal** (and even sometimes ordinal) scale.
 
 Reference: https://courses.lumenlearning.com/introstats1/chapter/when-to-use-each-measure-of-central-tendency/
+
+***
+
+## BG-NBD model
+1. CLV (Customer Lifetime Value): the total worth of a customer to a company over the lengh of his relationship. In practice, this "worth" can be defined as revenue, profit, or other metrics of an analyst's chooosing.
+    Two reasons for CLV as an important metric:
+    - The totality of a company's CLV over its entire customer base gives a rough idea of its market value. Thus, a company with a high total CLV will appear attractive to investors.
+    - A CLV analysis can guide the formulation of *customer acquisition* and *retention* strategies. For example, special attention could be given to high-value customers to ensure that they stay loyal to the company.
+
+2. Limitations of CLV: 
+   
+   - *Only applicable to non-contractual, continuous purchases*
+   Depending on the relationship between the sellers and the buyers, a business can either be a contractual business or a non-contractual business.
+        - A contractual business: the buyer-seller relationship is governed by contracts. When either party no loger wants to continue this relationship, the contract is terminated. There is no ambiguity as to whether someone is a customer of the business at a given point.
+        - A non-contractual business: purchases are made on a per-need basis without any contract
+        - In a continuous setting, purchases can occur at any given moment.
+        - In a discrete setting, purchases usually occur periodically with some degree of regularity. 
+        ![image](https://user-images.githubusercontent.com/60702562/160159329-4f6d35a4-1e77-4533-ba16-3b664ab15adc.png)
+
+   - *Only tackles one component of CLV calculation, which is the prediction of the number of purchases*
+     A customer's CLV for a given period can be calculated by multiplying two numbers:
+        1. The customer's predicted number of transactions within this period
+        2. The predicted value of each purchase
+        ![image](https://user-images.githubusercontent.com/60702562/160160527-60caa26b-7851-430b-accb-8805c5a20d4f.png)
+
+Reference: https://towardsdatascience.com/customer-lifetime-value-estimation-via-probabilistic-modeling-d5111cb52dd
+       
