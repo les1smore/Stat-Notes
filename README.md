@@ -73,5 +73,7 @@ Reference: https://courses.lumenlearning.com/introstats1/chapter/when-to-use-eac
         2. The predicted value of each purchase
         ![image](https://user-images.githubusercontent.com/60702562/160160527-60caa26b-7851-430b-accb-8805c5a20d4f.png)
 
-Reference: https://towardsdatascience.com/customer-lifetime-value-estimation-via-probabilistic-modeling-d5111cb52dd
+Reference: 
+1. https://towardsdatascience.com/customer-lifetime-value-estimation-via-probabilistic-modeling-d5111cb52dd
+2. https://towardsdatascience.com/modeling-customer-lifetime-value-with-lifetimes-71171a35f654#2b5f-e66d9b5b6df0
        
