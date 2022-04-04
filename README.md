@@ -65,7 +65,10 @@ df[['math', 'science']].corr(method = 'spearman')
 - A scatter plot would be helpful to visualize the data — if the distribution is linear, use Pearson correlation. If it is monotonic, use Spearman correlation.
 - You can also apply both the methods and check which is performing well. For instance if results show spearman rank correlation coefficient is greater than Pearson coefficient, it means your data has monotonic relationships and not linear.
 
---- 
+Reference: https://towardsdatascience.com/statistics-in-python-understanding-variance-covariance-and-correlation-4729b528db01
+
+---
+
 ## Correlation vs. Collinearity vs. Multicollinearity
 
 - *Correlation:* measures the strength and direction between two columns in your dataset. Correlation is often used to find the relationship between a feature and the target. 
@@ -115,7 +118,10 @@ One important assumption of linear regression is that there should exist a linea
   - Note: 
     - Any feature that has a VIF more than 5 should be removed from your training dataset.
     - VIF only works on continuous variables, and not categorical variables.
--- 
+
+Reference: https://towardsdatascience.com/statistics-in-python-collinearity-and-multicollinearity-4cc4dcd82b3f
+
+---
 
 ## Hypothesis Test
 1. **t-test independent:** parametric version of 2 groups paired data
