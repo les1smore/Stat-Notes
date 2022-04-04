@@ -41,7 +41,8 @@ Like covariance, the sign of the pearson correlation coefficient indicates the d
 5. No correlation — values close to 0
 
 Understanding the correlations between the various columns in your dataset is an important part of the process of preparing your data for machine learning. You want to train your model using the columns that has the highest correlation with the label of your dataset.
-```
+
+```ruby
 df[['math', 'science']].corr(method = 'pearson')
 ```
 - **Spearman’s Rank Correlation Coefficient** — determines the strength and direction of the monotonic relationship which exists between two ordinal (categorical) or continuous variables.
@@ -52,9 +53,10 @@ In algebra, a montonic function is a function whose gradient never changes sign.
 ![image](https://user-images.githubusercontent.com/60702562/161578552-16500a64-aa85-428f-9d2f-afc139fd33b4.png)
 
 The formula for Spearman’s Rank Correlation Coefficient is:
+
 ![image](https://user-images.githubusercontent.com/60702562/161579136-67bd4232-480c-4c26-9c8d-a31eac357980.png)
 
-```
+```ruby
 df[['math', 'science']].corr(method = 'spearman')
 ```
 
@@ -63,6 +65,57 @@ df[['math', 'science']].corr(method = 'spearman')
 - A scatter plot would be helpful to visualize the data — if the distribution is linear, use Pearson correlation. If it is monotonic, use Spearman correlation.
 - You can also apply both the methods and check which is performing well. For instance if results show spearman rank correlation coefficient is greater than Pearson coefficient, it means your data has monotonic relationships and not linear.
 
+--- 
+## Correlation vs. Collinearity vs. Multicollinearity
+
+- *Correlation:* measures the strength and direction between two columns in your dataset. Correlation is often used to find the relationship between a feature and the target. 
+
+  For example, if one of the features has a high correlation with the target, it tells you that this particular feature heavily influences the target and should be included when you are training the model.
+
+![image](https://user-images.githubusercontent.com/60702562/161597067-f61138ed-837f-4d87-b147-5290fc845462.png)
+
+- *Collinearity:* is a situation where two features are linearly associated (high correlation), and they are used as predictors for the target.
+
+![image](https://user-images.githubusercontent.com/60702562/161597227-cc697691-4489-4a06-9291-0d01315f4ba0.png)
+
+- *Multicollinearity:* is a special case of collinearity where a feature exhibits a linear relationship with two or more features.
+
+![image](https://user-images.githubusercontent.com/60702562/161597521-e016c175-c8a9-4d77-8890-1b6db2c4c1ef.png)
+
+**Problem with collinearity and multicollinearity**:
+Recall the formula for multiple linear regression:
+![image](https://user-images.githubusercontent.com/60702562/161597673-721c5e9a-8747-4571-9fa6-cb77acb55bcf.png)
+
+One important assumption of linear regression is that there should exist a linear relationship between each of the predictors (x₁, x₂, etc) and the outcome y. However, if there is a correlation between the predictors (e.g. x₁ and x₂ are highly correlated), you can no longer determine the effect of one while holding the other constant since the two predictors change together. The end result is that the coefficients (w₁ and w₂) are now less exact and hence less interpretable.
+
+**Fixing Multicollinearity: VIF — Variance Inflation Factor**
+- VIF allows you to determine the strength of the correlation between the various independent variables. It is calculated by taking a variable and regressing it against every other variables.
+- VIF calculates how much the variance of a coefficient is inflated because of its linear dependencies with other predictors. Hence its name.
+- How VIF works:
+  - Assuming you have a list of features — x₁, x₂, x₃, and x₄.
+  - You first take the first feature, x₁, and regress it against the other features:
+  ```
+  x₁ ~ x₂ + x₃ + x₄   # regress x₁ against the rest of the features
+  x₂ ~ x₁ + x₃ + x₄   # regress x₂ against the rest of the features
+  x₃ ~ x₁ + x₂ + x₄   # regress x₃ against the rest of the features
+  x₄ ~ x₁ + x₂ + x₃   # regress x₄ against the rest of the features
+  ```
+  - In the multiple regression above, you extract the R² value (between 0 and 1). If R² is large, this means that x₁ can be predicted from the three features, and is thus highly correlated with the three features — x₂, x₃, and x₄. If R² is small, this means that x₁ cannot be predicted from the features, and is thus not correlated with the three features — x₂, x₃, and x₄.
+  - Based on the R² value that is calculated for x₁, you can now calculate its VIF using the following formula:
+  ![image](https://user-images.githubusercontent.com/60702562/161602475-25f5330e-f8df-4be8-a785-f41e7fb4f5bd.png)
+  - A large R² value (close to 1) will cause the denominator to be small (1 minus a value close to 1 will give you a number close to 0). This will result in a large VIF. A large VIF indicates that this feature exhibits multicollinearity with the other features.
+  - Conversely, a small R² value (close to 0) will cause the denominator to be large (1 minus a value close to 0 will give you a number close to 1). This will result in a small VIF. A small VIF indicates that this feature exhibits low multicollinearity with the other features.
+  - (1- R²) is also known as the tolerance.
+  - While correlation matrix and scatter plots can be used to find multicollinearity, they only show the bivariate relationship between the independent variables. VIF ,on the other hand, **shows the correlation of a variable with a group of other variables.**
+  - Interpreting VIF Values
+    - 1 — features are not correlated
+    - 1<VIF<5 — features are moderately correlated
+    - VIF>5 — features are highly correlated
+    - VIF>10 — high correlation between features and is cause for concern
+  - Note: 
+    - Any feature that has a VIF more than 5 should be removed from your training dataset.
+    - VIF only works on continuous variables, and not categorical variables.
+-- 
 
 ## Hypothesis Test
 1. **t-test independent:** parametric version of 2 groups paired data
