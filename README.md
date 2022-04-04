@@ -1,6 +1,69 @@
 # statnotes
 Statistical Learning Notes
 
+## Variance
+Variance is the spread of values in a dataset around its mean value. It tells you how far each number in the dataset is from its mean. The formula for variance (s²) is defined as follows:
+
+![image](https://user-images.githubusercontent.com/60702562/161456643-a7c6e7b8-a18d-40cd-86ad-be737d2cecf5.png)
+
+**Note**: For sample variance, the denominator is n-1. For population variance, the denominator is n.
+
+A large variance indicates that the numbers in the dataset are far from the mean and far from each other. A small variance, on the other hand, indicates that the numbers are close to the mean and to each other. A variance of 0 indicates that all the numbers in the dataset are the identical. Finally, the valid value of variance is always a positive number (0 or more).
+
+![image](https://user-images.githubusercontent.com/60702562/161456837-52a4af96-fe23-48e6-af40-7e89cb68d11b.png)
+
+As you can see, the values in column a are much more dispersed compared to the rest of the columns, and likewise the values in column b are more dispersed than b and c, and so on. The values in d are the most closely grouped compared to the rest of the columns. As such, you would expect the variance for a would be the largest and the variance for d would be the lowest.
+
+
+## Covariance
+While variance measures the spread of data within its mean value, covariance measures the relationalship between two random variables.
+
+![image](https://user-images.githubusercontent.com/60702562/161573475-57ef443b-b89d-40ed-acc0-537d956f43a4.png)
+
+When two random variables are independent, the covariance will be zero. **However, the reverse is not necessarily true** — a covariance of zero does not mean that 2 random variables are independent (a non-linear relationship can still exist between 2 random variables that has zero covariance). In the above example, you can see that there exists some sort of non-linear v-shape relationship.
+
+While the covariance measures the directional relationship between 2 random variables, it does not show the strength of the relationship between the 2 random variables. Its value is not constrained, and can be from -infinity to +infinity.
+
+## Correlation
+A much better way to measure the strength of two random variables is correlation.
+
+The correlation between two random variables measures both the strength and direction of a linear relationship that exists between them. There are two ways to measure correlation:
+- **Pearson Correlation Coefficient** — captures the strength and direction of the linear association between two continuous variables
+![image](https://user-images.githubusercontent.com/60702562/161575149-3d80c169-33ab-4989-9ced-d4588e62a463.png)
+
+The Pearson Correlation Coefficient is defined to be the covariance of x and y divided by the product of each random variable’s standard deviation.
+
+Like covariance, the sign of the pearson correlation coefficient indicates the direction of the relationship. However, the values of the Pearson correlation coefficient is contrained to be between -1 and 1. Based on the value, you can deduce the following degrees of correlation:
+1. Perfect — values near to ±1
+2. High degree — values between ±0.5 and ±1
+3. Moderate degree — values between ±0.3 and ±0.49
+4. Low degree — values below ±0.29
+5. No correlation — values close to 0
+
+Understanding the correlations between the various columns in your dataset is an important part of the process of preparing your data for machine learning. You want to train your model using the columns that has the highest correlation with the label of your dataset.
+```
+df[['math', 'science']].corr(method = 'pearson')
+```
+- **Spearman’s Rank Correlation Coefficient** — determines the strength and direction of the monotonic relationship which exists between two ordinal (categorical) or continuous variables.
+
+If your data is not linearly distributed, you should use Spearman’s Rank Correlation Coefficient.
+
+In algebra, a montonic function is a function whose gradient never changes sign. In other words, it is a function which is either always increasing or decreasing. The following first two figures are *_monotonic_*, while the third is not (since the gradient changes sign a few times going from left to right).
+![image](https://user-images.githubusercontent.com/60702562/161578552-16500a64-aa85-428f-9d2f-afc139fd33b4.png)
+
+The formula for Spearman’s Rank Correlation Coefficient is:
+![image](https://user-images.githubusercontent.com/60702562/161579136-67bd4232-480c-4c26-9c8d-a31eac357980.png)
+
+```
+df[['math', 'science']].corr(method = 'spearman')
+```
+
+***Which method should you use? Pearson or Spearman’s*** 
+- Pearson correlation describes linear relationships and spearman correlation describes monotonic relationships
+- A scatter plot would be helpful to visualize the data — if the distribution is linear, use Pearson correlation. If it is monotonic, use Spearman correlation.
+- You can also apply both the methods and check which is performing well. For instance if results show spearman rank correlation coefficient is greater than Pearson coefficient, it means your data has monotonic relationships and not linear.
+
+
 ## Hypothesis Test
 1. **t-test independent:** parametric version of 2 groups paired data
 
