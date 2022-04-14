@@ -231,6 +231,6 @@ Pass in the data to be transformed, y, and the lambda with which you had transfo
 
 **Limitations**
 - If interpretation is your goal, then the Box-Cox transformation may be a poor choice. If lambda is some non-zero number, then the transformed target variable may be more difficult to interpret than if we simply applied a log transform.
-- A second issue is that the Box-Cox transformation usually gives the median of the forecast distribution when we revert the transformed data to its original scale. Occasionally, we want the mean (not the median) and there are ways we can do this, which I may discuss in a later article.
+- A second issue is that the Box-Cox transformation usually gives the median of the forecast distribution when we revert the transformed data to its original scale. Occasionally, we want the mean (not the median).
 
 Reference: https://towardsdatascience.com/box-cox-transformation-explained-51d745e34203
