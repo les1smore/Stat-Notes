@@ -199,3 +199,38 @@ Reference:
 1. https://towardsdatascience.com/customer-lifetime-value-estimation-via-probabilistic-modeling-d5111cb52dd
 2. https://towardsdatascience.com/modeling-customer-lifetime-value-with-lifetimes-71171a35f654#2b5f-e66d9b5b6df0
        
+***
+
+## Box-Cox Transformation
+The Box-Cox transformation transforms our data so that it closely resembles a *normal distribution*.
+
+In many statistical techniques, we assume that the errors are normally distributed. This assumption allows us to construct confidence intervals and conduct hypothesis tests. By transforming your target variable, we can (hopefully) normalize our errors (if they are not already normal).
+
+Additionally, transforming our variables can improve the predictive power of our models because transformations can cut away white noise.
+
+![image](https://user-images.githubusercontent.com/60702562/163300907-5abe7b77-1353-4fc8-8ce0-797a1aaa9887.png)
+
+where t is the time period and lambda is the parameter that we choose (you can perform the Box-Cox transformation on non-time series data, also).
+Notice what happens when lambda equals 1. In that case, our data shifts down but the shape of the data does not change. Therefore, if the optimal value for lambda is 1, then the data is already normally distributed, and the Box-Cox transformation is unnecessary.
+
+Scipy has a boxcox function that will choose the optimal value of lambda for us.
+
+```ruby
+scipy.stats.boxcox()
+```
+Simply pass a 1-D array into the function and it will return the Box-Cox transformed array and the optimal value for lambda. You can also specify a number, alpha, which calculates the confidence interval for that value. (For example, alpha = 0.05 gives the 95% confidence interval).
+
+Next, fit your model to the Box-Cox transformed data. 
+**Note**: 
+However, you must revert your data to its original scale when you are ready to make predictions.
+For example, your model might predict that the Box-Cox transformed value, given other features, is 1.5. You need to take that 1.5 and revert it to its original scale (the scale of your target variable).
+```ruby
+scipy.special.inv_boxcox(y, lambda)
+```
+Pass in the data to be transformed, y, and the lambda with which you had transformed your data.
+
+**Limitations**
+- If interpretation is your goal, then the Box-Cox transformation may be a poor choice. If lambda is some non-zero number, then the transformed target variable may be more difficult to interpret than if we simply applied a log transform.
+- A second issue is that the Box-Cox transformation usually gives the median of the forecast distribution when we revert the transformed data to its original scale. Occasionally, we want the mean (not the median) and there are ways we can do this, which I may discuss in a later article.
+
+Reference: https://towardsdatascience.com/box-cox-transformation-explained-51d745e34203
