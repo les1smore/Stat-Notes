@@ -124,23 +124,24 @@ Reference: https://towardsdatascience.com/statistics-in-python-collinearity-and-
 ---
 
 ## Hypothesis Test
-1. **t-test independent:** parametric version of 2 groups paired data
 
+### 4 Steps in Hypothesis testing
+**Step 1. Define null and alternative hypothesis**
+- **Null hypothesis (H0)** can be stated differently depends on the statistical tests, but generalize to the claim that no difference, no relationship or no dependency exists between two or more variables. 
+- **Alternative hypothesis (H1)** is contradictory to the null hypothesis and it claims that relationships exist. It is the hypothesis that we would like to prove right. However, a more conservational approach is favored in statistics where we always assume null hypothesis is true and try to find evidence to reject the null hypothesis.
+
+**Step 2. Choose the appropriate test**
+1. **t-test independent:** parametric version of 2 groups paired data
 
 2. **ANOVA:** parametric version of more than 2 groups and unpaired data - To find which group or groups cause the difference, we need to perform a *posthoc test/pairwise comparison* e.g.`Bonferroni adjustment`
 
-
 3. **Mann Whitney U:** nonparametric version of 2 group comparison for unpaired data
-
 
 4. **Kruskal-Wallis:** the nonparametric version of ANOVA for unpaired data (the data is collected from different sources)
 
-
 5. **t-test dependent:** The data is paired since data is collected from the same individuals and assumptions are satisfied
 
-
 6. **Wilcoxon signed-rank test:** The normality assumption is not satisfied; therefore, we need to use the nonparametric version for 2 groups of paired data
-
 
 7. **Friedman Chi-Square:** nonparametric version of ANOVA for more than 2 groups paired data
 
@@ -155,8 +156,16 @@ Reference: https://towardsdatascience.com/statistics-in-python-collinearity-and-
 - Chi-Square:
     - Compares proportions between two groups
 
+**Step 3. Calculate the p-value**
+How p value is calculated primarily depends on the statistical testing selected. Firstly, based on the mean and standard deviation of the observed sample data, we are able to derive the test statistics value (e.g. t-statistics, f-statistics). Then calculate the probability of getting this test statistics given the distribution of the null hypothesis, we will find out the p-value. We will use some examples to demonstrate this in more detail. 
 
-Reference: https://towardsdatascience.com/hypothesis-testing-with-python-step-by-step-hands-on-tutorial-with-practical-examples-e805975ea96e
+**Step 4. Determine the statistical significance**
+p value is then compared against the significance level (also noted as alpha value) to determine whether there is sufficient evidence to reject the null hypothesis. The significance level is a predetermined probability threshold - commonly 0.05. If p value is larger than the threshold, it means that the value is likely to occur in the distribution when the null hypothesis is true. On the other hand, if lower than significance level, it means it is very unlikely to occur in the null hypothesis distribution - hence reject the null hypothesis.
+
+
+Reference: 
+1. https://towardsdatascience.com/hypothesis-testing-with-python-step-by-step-hands-on-tutorial-with-practical-examples-e805975ea96e
+2. https://www.visual-design.net/post/an-interactive-guide-to-hypothesis-testing-in-python
 
 *** 
 
